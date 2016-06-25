@@ -49,8 +49,8 @@ describe('Link', function() {
 
     it('should only add policyholder', function() {
         let obj: Link = new Link(undefined, undefined, undefined);
-        obj.policyHolder.tripCost = 100;
-        obj.policyHolder.age = 34;
+        obj.policyholder.tripCost = 100;
+        obj.policyholder.age = 34;
 
         let sut: string = obj.buildLink();
 
@@ -113,8 +113,8 @@ describe('Link', function() {
         obj.addFlight(new Flight('2016-06-24', 1234, 'DL', 'PNS', 'ATL'));
         obj.addFlight(new Flight('2016-06-27', 2665, 'AA', 'ATL', 'LAX'));
 
-        obj.policyHolder.tripCost = 100;
-        obj.policyHolder.age = 34;
+        obj.policyholder.tripCost = 100;
+        obj.policyholder.age = 34;
 
         // travelers
         let t1: Traveler = new Traveler();

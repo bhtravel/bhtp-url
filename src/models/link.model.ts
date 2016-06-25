@@ -14,7 +14,7 @@ export class Link  {
     public trip: Trip;
     public flights: Flight[];
     public travelers: Traveler[];
-    public policyHolder: Traveler;
+    public policyholder: Traveler;
 
     constructor(agentCode: string, campaignId: string, productId: string, enableProdMode: boolean = false) {
         this.agentCode = agentCode;
@@ -22,7 +22,7 @@ export class Link  {
         this.productId = productId;
 
         this.trip = new Trip();
-        this.policyHolder = new Traveler();
+        this.policyholder = new Traveler();
         this.flights = [];
         this.travelers = [];
 
@@ -77,8 +77,8 @@ export class Link  {
         }
 
         // Travelers
-        if (this.policyHolder) {
-            let travelerString = this.policyHolder.serialize();
+        if (this.policyholder) {
+            let travelerString = this.policyholder.serialize();
 
             if (travelerString.length > 0) {
                 link += '&ph=' + travelerString;

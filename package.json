@@ -1,5 +1,5 @@
 {
-  "name": "bhtp",
+  "name": "bhtp-url",
   "version": "0.1.0",
   "description": "A package to integrate with Berkshire Hathaway Travel Protection's consumer website.",
   "main": "index.js",
