@@ -1,0 +1,34 @@
+{
+  "name": "bhtp",
+  "version": "0.1.0",
+  "description": "A package to integrate with Berkshire Hathaway Travel Protection's consumer website.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run typings && npm run lint && npm run tsc && npm run bundle",
+    "clean": "rimraf ./bundles/ ./models/ ./test/ && npm run clean-src",
+    "clean-src": "rimraf ./src/**/*.js ./src/**/*.d.ts",
+    "lint": "tslint ./src/**/*.ts",
+    "tsc": "tsc --project . --declaration",
+    "tsc-single": "tsc --project . --rootDir ./src --module system --outFile ./bundles/bhtp.js",
+    "bundle": "npm run tsc-single && npm run uglify",
+    "uglify": "uglifyjs ./bundles/bhtp.js --output ./bundles/bhtp.min.js",
+    "test": "npm run build && mocha test --reporter spec --recursive --growl",
+    "prepublish": "npm run build",
+    "typings": "typings install"
+  },
+  "keywords": [
+    "BHTP",
+    "TI"
+  ],
+  "author": "Scott M Gerstl <sgerstl@bhtp.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "rimraf": "^2.5.2",
+    "tslint": "^3.11.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1",
+    "uglify-js": "^2.6.4"
+  }
+}

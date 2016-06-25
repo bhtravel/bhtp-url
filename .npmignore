@@ -1,0 +1,11 @@
+/node_modules
+/src
+/test
+/typings
+.gitignore
+.npmignore
+package.json
+README.md
+tsconfig.json
+tslint.json
+typings.json
