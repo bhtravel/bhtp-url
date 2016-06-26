@@ -8,10 +8,9 @@ This package is availbale for use by accounts and partners of Berkshire Hathaway
 - All countries and states follow [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) standard
 - All flight information is identified by [IATA codes](https://en.wikipedia.org/wiki/International_Air_Transport_Association)
 
-## API
--**
+# API
 
-### the **Link** object
+## the **Link** object
 The link object holds all information about the integration and is the top level object in this package. It contains the following properties:
 
 ```javascript
@@ -69,11 +68,11 @@ This is the insurable information
     var link = linkData.buildLink();
 ```
 
-This will create a new link object and it will initialize the flight and traveler arrays, and the trip and policyholder object.
+The constructor will create a new link object and it will initialize the flight and traveler arrays, and the trip and policyholder object.
 
 -**
 
-### the **Trip** object
+## the **Trip** object
 The trip object holds all information about the trip to insure. It contains the following properties:
 
 ```javascript
@@ -102,7 +101,7 @@ var totalTravelerCount;
 
 -**
 
-### the **Traveler** and **Policyholder** objects
+## the **Traveler** and **Policyholder** objects
 The traveler object holds all information about the traveler to insure. It contains the following properties:
 
 ```javascript
@@ -113,11 +112,11 @@ var tripCost;
 
 - **birthdate**: the date of birth of the traveler in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Dates) format.
 - **age**: The age of the traveler. If the birthdate is specified, this value is ignored.
-- **tripCost**: The cost of the trip for this traveler.
+- **tripCost**: The cost of the trip for this traveler in US dollars.
 
 -**
 
-### the **Flight** object
+## the **Flight** object
 The flight object holds all information about the flights to insure. This is for AirCare products only. It contains the following properties:
 
 ```javascript

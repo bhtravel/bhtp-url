@@ -6,35 +6,35 @@ import { Flight } from '../models/flight.model';
 describe('Link', function() {
     it('should only create a non-production link', function() {
         let obj: Link = new Link(undefined, undefined, undefined);
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i');
     });
 
     it('should only create a production link', function() {
         let obj: Link = new Link(undefined, undefined, undefined, true);
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://www.bhtp.com/i');
     });
 
     it('should only add source and medium', function() {
         let obj: Link = new Link('AAgent', undefined, undefined);
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?utm_source=AAgent&utm_medium=Partner');
     });
 
     it('should only add campaign', function() {
         let obj: Link = new Link(undefined, 'TestPromo', undefined);
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?campaign=TestPromo');
     });
 
     it('should only add package', function() {
         let obj: Link = new Link(undefined, undefined, 'AirCare');
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?package=AirCare');
     });
@@ -42,7 +42,7 @@ describe('Link', function() {
     it('should only add trip', function() {
         let obj: Link = new Link(undefined, undefined, undefined);
         obj.trip.destinationCountryIsoCode2 = 'IE';
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?dc=IE');
     });
@@ -52,7 +52,7 @@ describe('Link', function() {
         obj.policyholder.tripCost = 100;
         obj.policyholder.age = 34;
 
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?ph=a:34;tc:100');
     });
@@ -72,7 +72,7 @@ describe('Link', function() {
 
         obj.addTraveler(t2);
 
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?t=a:28;tc:100&t=a:88;tc:200');
     });
@@ -92,7 +92,7 @@ describe('Link', function() {
 
         obj.addFlight(f2);
 
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         expect(sut).to.equal('https://sbx-www.bhtp.com/i?f=n:1234;ac:DL&f=n:2665;ac:AA');
     });
@@ -129,7 +129,7 @@ describe('Link', function() {
 
         obj.addTraveler(t2);
 
-        let sut: string = obj.buildLink();
+        let sut: string = obj.generateLink();
 
         let expected: string =
             'https://sbx-www.bhtp.com/i?utm_source=AAgent&utm_medium=Partner&campaign=TestPromo&package=ExactCare' +
