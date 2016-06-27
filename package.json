@@ -1,6 +1,6 @@
 {
   "name": "bhtp-url",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "A package to integrate with Berkshire Hathaway Travel Protection's consumer website.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "bundle": "mkdir bundles && npm run browserify && npm run uglify",
     "uglify": "uglifyjs ./bundles/bhtp-url.js --output ./bundles/bhtp-url.min.js",
     "test": "npm run build && mocha ./dist/test --reporter spec --recursive --growl",
-    "prepublish": "npm run build",
+    "prepublish": "npm run test",
     "typings": "typings install"
   },
   "keywords": [

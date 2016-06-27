@@ -28,7 +28,7 @@ var policyholder;
 function addFlight(flightObject);
 function addTraveler(travelerObject);
 
-function buildLink();
+function generateLink();
 ```
 
 This information is used to identify the integration
@@ -41,31 +41,48 @@ This information is used to identify the integration
 This is the insurable information
 
 - **trip**: information about the trip to insure. Description of the model is below.
-- **flights**: information about the flights to ensure. Description of the model is below.
+- **flights**: information about the flights to insure. Description of the model is below.
 - **travelers**: information about the travelers to insure -- this does not include the policyholder. Description of the model is below.
 - **policyholder**: information about the traveler holding the policy. Description of the model is below.
 
 #### Generating a useable link
 
 ```javascript
-    var linkData = new Link(agentCode, campaignId, productId, enableProdMode);
+// true/false in the last constructor propertyindicatse enableProdMode
+var link = new bhtp.Link('AAgent', 'TestPromo', 'ExactCare', false);
 
-    // Add some trip data
-    linkData.trip.destinationCountryIsoCode2 = 'FR';
+// Trip
+link.trip.destinationCountryIsoCode2 = 'GB';
+link.trip.residencePostalCode = '54481';
+link.trip.departureDate = '2016-06-24';
+link.trip.returnDate = '2016-07-10';
+link.trip.initialPaymentDate = '2016-06-15';
+link.trip.policyholderEmail = 'sherlock.holmes@bhtp.com';
+link.trip.totalTravelerCount = 5;
 
-    // Add flights
-    linkData.addFlight(new Flight(departureDate, flightNumber, airlineCode, departureAirport, arrivalAirport));
+// flights
+link.addFlight(new bhtp.Flight('2016-06-24', 1234, 'DL', 'PNS', 'ATL'));
+link.addFlight(new bhtp.Flight('2016-06-27', 2665, 'AA', 'ATL', 'LAX'));
 
-    // Add travelers
-    var traveler = new Traveler(tripCost);
-    traveler.age = 25;
-    linkData.addTraveler(traveler);
+// policyholder
+link.policyholder.tripCost = 100;
+link.policyholder.age = 34;
 
-    // Add policyholder information
-    linkData.policyholder.birthdate = '1976-07-23';
+// travelers
+var t1 = new bhtp.Traveler();
+t1.tripCost = 100;
+t1.age = 28;
+link.addTraveler(t1);
 
-    // generate the link
-    var link = linkData.buildLink();
+var t2 = new bhtp.Traveler();
+t2.tripCost = 200;
+t2.birthdate = '1986-09-07';
+link.addTraveler(t2);
+
+// generate the link
+var link = linkData.generateLink();
+
+// https://sbx-www.bhtp.com/i?utm_source=AAgent&utm_medium=Partner&campaign=TestPromo&package=ExactCare&dc=GB&rs=54481&dd=2016-06-24&rd=2016-07-10&pd=2016-06-15&e=sherlock.holmes@bhtp.com&tt=5&f=d:2016-06-24;n:1234;ac:DL;da:PNS;aa:ATL&f=d:2016-06-27;n:2665;ac:AA;da:ATL;aa:LAX&ph=a:34;tc:100&t=a:28;tc:100&t=db:1986-09-07;tc:200
 ```
 
 The constructor will create a new link object and it will initialize the flight and traveler arrays, and the trip and policyholder object.
@@ -78,6 +95,7 @@ The trip object holds all information about the trip to insure. It contains the 
 ```javascript
 var destinationCountryIsoCode2;
 var residenceStateIsoCode2;
+var residencePostalCode;
 
 var departureDate;
 var returnDate;
@@ -88,16 +106,16 @@ var totalTravelerCount;
 ```
 
 - **destinationCountryIsoCode2**: The [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for the destination country that will be visited. If there is more than one destination country, pass only one.
-- **residenceStateIsoCode2**: The [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US) code for the US state of residence without the US- portion in the beginning (Example: Wisconson = WI).
-
+- **residenceStateIsoCode2**: The [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US) code for the US state of residence without the US- portion in the beginning (Example: Wisconson = WI). If residencePostalCode is supplied, this will be ignored.
+- **residencePostalCode**: The postal code of the US address of residence of the policyholder. This takes precendence over residenceStateIsoCode2
 
 - **departureDate**: The date of departure in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Dates) format.
-- **returneDate**: The date of return from the trip in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Dates) format.
+- **returnDate**: The date of return from the trip in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Dates) format.
 - **initialPaymentDate**: The date the first payment toward the trip was made in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Dates) format.
 
 
 - **policyholderEmail**: the email of the policyholder
-- **totalTravelerCount**: An optional field identifying how many travelers, including the policyholder, that will be on the policy. This may be omitted in lieu of specifying a policyholder and travelers which are documented below.
+- **totalTravelerCount**: An optional field identifying how many travelers, **including the policyholder**, that will be on the policy. This may be omitted in lieu of specifying a policyholder and travelers which are documented below.
 
 -**
 

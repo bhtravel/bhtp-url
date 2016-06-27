@@ -28,7 +28,7 @@ export class Trip {
     public residenceStateIsoCode2: string;
 
     /**
-     * The postal code of the US address of residnce of the policyholder. This takes precendence over residenceStateIsoCode2
+     * The postal code of the US address of residence of the policyholder. This takes precendence over residenceStateIsoCode2
      *
      * @type {string}
      */
