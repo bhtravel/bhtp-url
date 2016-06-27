@@ -12,7 +12,8 @@
     "browserify": "browserify --standalone bhtp dist/link.js > bundles/bhtp-url.js",
     "bundle": "mkdir bundles && npm run browserify && npm run uglify",
     "uglify": "uglifyjs ./bundles/bhtp-url.js --output ./bundles/bhtp-url.min.js",
-    "test": "npm run build && mocha ./dist/test --reporter spec --recursive --growl",
+    "test": "npm run build && npm run coverage",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- ./dist/test/**/*.spec.js -R spec",
     "prepublish": "npm run test",
     "typings": "typings install"
   },
@@ -24,6 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
     "rimraf": "^2.5.2",
     "tslint": "^3.11.0",

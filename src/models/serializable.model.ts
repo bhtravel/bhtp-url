@@ -18,7 +18,7 @@ export class Serializable {
      * Creates an instance of Serializable.
      */
     constructor() {
-        this.dictionary = {};
+        this.dictionary = new Dictionary();
     }
 
     /**
