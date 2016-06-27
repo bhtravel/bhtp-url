@@ -35,6 +35,25 @@ describe('Trip', function() {
         expect(sut).to.equal('rs=WI');
     });
 
+    it('should serialize only residence postal code when it is the only thing', function() {
+        let obj: Trip = new Trip();
+        obj.residencePostalCode = '54403';
+
+        let sut: string = obj.serialize();
+
+        expect(sut).to.equal('rs=54403');
+    });
+
+    it('should serialize residence postal code over residence state', function() {
+        let obj: Trip = new Trip();
+        obj.residencePostalCode = '54403';
+        obj.residenceStateIsoCode2 = 'WI';
+
+        let sut: string = obj.serialize();
+
+        expect(sut).to.equal('rs=54403');
+    });
+
     it('should serialize only departure date when it is the only thing', function() {
         let obj: Trip = new Trip();
         obj.departureDate = '2016-06-24';

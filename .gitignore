@@ -1,7 +1,6 @@
 bundles/
 node_modules/
-models/*
-test/*
+dist/
 src/**/*.js
 typings/
 */**/*.d.ts

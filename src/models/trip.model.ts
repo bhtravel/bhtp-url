@@ -18,13 +18,21 @@ export class Trip {
     public destinationCountryIsoCode2: string;
 
     /**
-     * The ISO 3166-2:US code for the US state of residence without the US- portion in the beginning
+     * The ISO 3166-2:US code for the US state of residence of the policy without the US- portion in the beginning.
+     * If residencePostalCode is supplied, this will be ignored.
      * @example
      * // Wisconson = WI
      *
      * @type {string}
      */
     public residenceStateIsoCode2: string;
+
+    /**
+     * The postal code of the US address of residnce of the policyholder. This takes precendence over residenceStateIsoCode2
+     *
+     * @type {string}
+     */
+    public residencePostalCode: string;
 
     /**
      * The date of departure in ISO 8601 format.
@@ -75,7 +83,10 @@ export class Trip {
             s.addValue('dc', this.destinationCountryIsoCode2);
         }
 
-        if (this.residenceStateIsoCode2) {
+        if (this.residencePostalCode) {
+            s.addValue('rs', this.residencePostalCode);
+        }
+        else if (this.residenceStateIsoCode2) {
             s.addValue('rs', this.residenceStateIsoCode2);
         }
 
