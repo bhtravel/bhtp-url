@@ -1,0 +1,12 @@
+/coverage
+/demo
+/dist/test
+/node_modules
+/src
+/typings
+.gitignore
+.npmignore
+package.json
+tsconfig.json
+tslint.json
+typings.json

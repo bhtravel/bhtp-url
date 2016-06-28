@@ -1,0 +1,8 @@
+bundles/
+coverage/
+node_modules/
+dist/
+src/**/*.js
+typings/
+*/**/*.d.ts
+/link.*
