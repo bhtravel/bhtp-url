@@ -89,7 +89,7 @@ var link = data.generateLink();
 
 The constructor will create a new link object and it will initialize the flight and traveler arrays, and the trip and policyholder object.
 
--**
+---
 
 ## the **Trip** object
 The trip object holds all information about the trip to insure. It contains the following properties:
@@ -119,7 +119,7 @@ var totalTravelerCount;
 - **policyholderEmail**: the email of the policyholder
 - **totalTravelerCount**: An optional field identifying how many travelers, **including the policyholder**, that will be on the policy. This may be omitted in lieu of specifying a policyholder and travelers which are documented below.
 
--**
+---
 
 ## the **Traveler** and **Policyholder** objects
 The traveler object holds all information about the traveler to insure. It contains the following properties:
@@ -134,7 +134,7 @@ var tripCost;
 - **age**: The age of the traveler. If the birthdate is specified, this value is ignored.
 - **tripCost**: The cost of the trip for this traveler in US dollars.
 
--**
+---
 
 ## the **Flight** object
 The flight object holds all information about the flights to insure. This is for AirCare products only. It contains the following properties:
