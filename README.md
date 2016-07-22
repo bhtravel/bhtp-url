@@ -10,6 +10,8 @@ This package is availbale for use by accounts and partners of Berkshire Hathaway
 
 # API
 
+This library supports es5 and typescript. This documentation is based off the bundled es5 file (bundles/bhtp-url.js)
+
 ## the **Link** object
 The link object holds all information about the integration and is the top level object in this package. It contains the following properties:
 
@@ -49,40 +51,40 @@ This is the insurable information
 
 ```javascript
 // true/false in the last constructor propertyindicatse enableProdMode
-var link = new bhtp.Link('AAgent', 'TestPromo', 'ExactCare', false);
+var data = new bhtp.Link('AA0057', 'TestPromo', 'ExactCare', false);
 
 // Trip
-link.trip.destinationCountryIsoCode2 = 'GB';
-link.trip.residencePostalCode = '54481';
-link.trip.departureDate = '2016-06-24';
-link.trip.returnDate = '2016-07-10';
-link.trip.initialPaymentDate = '2016-06-15';
-link.trip.policyholderEmail = 'sherlock.holmes@bhtp.com';
-link.trip.totalTravelerCount = 5;
+data.trip.destinationCountryIsoCode2 = 'GB';
+data.trip.residencePostalCode = '54481';
+data.trip.departureDate = '2016-09-24';
+data.trip.returnDate = '2016-10-10';
+data.trip.initialPaymentDate = '2016-06-15';
+data.trip.policyholderEmail = 'sherlock.holmes@bhtp.com';
+data.trip.totalTravelerCount = 3;
 
 // flights
-link.addFlight(new bhtp.Flight('2016-06-24', 1234, 'DL', 'PNS', 'ATL'));
-link.addFlight(new bhtp.Flight('2016-06-27', 2665, 'AA', 'ATL', 'LAX'));
+data.addFlight(new bhtp.Flight('2016-09-24', 1234, 'DL', 'PNS', 'ATL'));
+data.addFlight(new bhtp.Flight('2016-09-27', 2665, 'AA', 'ATL', 'LAX'));
 
 // policyholder
-link.policyholder.tripCost = 100;
-link.policyholder.age = 34;
+data.policyholder.tripCost = 100;
+data.policyholder.age = 34;
 
 // travelers
 var t1 = new bhtp.Traveler();
 t1.tripCost = 100;
 t1.age = 28;
-link.addTraveler(t1);
+data.addTraveler(t1);
 
 var t2 = new bhtp.Traveler();
 t2.tripCost = 200;
 t2.birthdate = '1986-09-07';
-link.addTraveler(t2);
+data.addTraveler(t2);
 
 // generate the link
-var link = linkData.generateLink();
+var link = data.generateLink();
 
-// https://sbx-www.bhtp.com/i?utm_source=AAgent&utm_medium=Partner&campaign=TestPromo&package=ExactCare&dc=GB&rs=54481&dd=2016-06-24&rd=2016-07-10&pd=2016-06-15&e=sherlock.holmes@bhtp.com&tt=5&f=d:2016-06-24;n:1234;ac:DL;da:PNS;aa:ATL&f=d:2016-06-27;n:2665;ac:AA;da:ATL;aa:LAX&ph=a:34;tc:100&t=a:28;tc:100&t=db:1986-09-07;tc:200
+// https://sbx-www.bhtp.com/i?utm_source=AAgent&utm_medium=Partner&campaign=TestPromo&package=ExactCare&dc=GB&rs=54481&dd=2016-09-24&rd=2016-10-10&pd=2016-06-15&e=sherlock.holmes@bhtp.com&tt=3&f=d:2016-09-24;n:1234;ac:DL;da:PNS;aa:ATL&f=d:2016-09-27;n:2665;ac:AA;da:ATL;aa:LAX&ph=a:34;tc:100&t=a:28;tc:100&t=db:1986-09-07;tc:200
 ```
 
 The constructor will create a new link object and it will initialize the flight and traveler arrays, and the trip and policyholder object.
